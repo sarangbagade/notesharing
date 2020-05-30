@@ -1,5 +1,7 @@
 package com.scaleup.notesharing.models;
 
+import lombok.*;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -8,7 +10,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "students")
-public class Student extends Auditable{
+@Builder
+@AllArgsConstructor
+@Getter
+@Setter
+public class Student extends User{
 
     private String name;
 
@@ -21,4 +27,9 @@ public class Student extends Auditable{
 
     @OneToMany
     private Set<Note> notes;
+
+    public Student()
+    {
+
+    }
 }
