@@ -1,6 +1,6 @@
 package com.scaleup.notesharing.models;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +8,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
 @Table(name = "roles")
 public class Role extends Auditable{
 
