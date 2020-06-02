@@ -1,11 +1,11 @@
 package com.scaleup.notesharing.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,12 +21,14 @@ public class Student extends User{
     private Branch branch;
 
     @ManyToOne
+    @JsonIdentityReference
     private College college;
 
     private Float rating;
 
-    @OneToMany
-    private Set<Note> notes;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+    @JsonManagedReference
+    private Set<Note> notes = new HashSet<>();
 
     public Student()
     {

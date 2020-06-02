@@ -1,5 +1,7 @@
 package com.scaleup.notesharing.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,9 +33,11 @@ public class Note extends Auditable{
 
     @ManyToOne
     @NotNull
+    @JsonBackReference
     private Student student;
 
     @ManyToOne
+    @JsonIdentityReference
     private Subject subject;
 
     private String imageUrl;

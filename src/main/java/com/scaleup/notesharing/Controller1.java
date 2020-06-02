@@ -34,11 +34,11 @@ public class Controller1 {
     public String populateDB()
     {
         roleRepository.deleteAll();
-        subjectRepository.deleteAll();
-        universityRepository.deleteAll();
-        noteRepository.deleteAll();
         studentRepository.deleteAll();
+        noteRepository.deleteAll();
+        subjectRepository.deleteAll();
         collegeRepository.deleteAll();
+        universityRepository.deleteAll();
         cityRepository.deleteAll();
 
         City city1 = City.builder().name("Chennai").build();
@@ -55,11 +55,11 @@ public class Controller1 {
 
         Note note1 = Note.builder().name("note1").description("first note").price(100).student(student1).build();
         noteRepository.save(note1);
+        Note note2 = Note.builder().name("note2").description("second note").price(200).student(student1).build();
+        noteRepository.save(note2);
 
         Subject subject1 = Subject.builder().name("spring").build();
         subjectRepository.save(subject1);
-
-
 
         return "DB populated";
     }
@@ -68,6 +68,31 @@ public class Controller1 {
     public List<Note> getAllNotes()
     {
         return noteRepository.findAll();
+    }
+    @GetMapping("/getAllStudents")
+    public List<Student> getAllStudents()
+    {
+        return studentRepository.findAll();
+    }
+    @GetMapping("/getAllCities")
+    public List<City> getAllCities()
+    {
+        return cityRepository.findAll();
+    }
+    @GetMapping("/getAllUniversities")
+    public List<University> getAllUniversities()
+    {
+        return universityRepository.findAll();
+    }
+    @GetMapping("/getAllSubjects")
+    public List<Subject> getAllSubjects()
+    {
+        return subjectRepository.findAll();
+    }
+    @GetMapping("/getAllRoles")
+    public List<Role> getAllRoles()
+    {
+        return roleRepository.findAll();
     }
 
     @GetMapping("/")

@@ -1,5 +1,6 @@
 package com.scaleup.notesharing.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,9 +27,11 @@ public class College extends Auditable{
 
     @NotNull
     @ManyToOne
+    @JsonIdentityReference
     private City city;
 
     @ManyToOne
+    @JsonIdentityReference
     @NotNull
     private University university;
 
