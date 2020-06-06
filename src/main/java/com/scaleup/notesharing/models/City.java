@@ -1,7 +1,5 @@
 package com.scaleup.notesharing.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,8 +10,6 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "cities")
-@Builder
-@AllArgsConstructor
 @Getter
 @Setter
 public class City extends Auditable{
@@ -25,5 +21,9 @@ public class City extends Auditable{
     public City()
     {
 
+    }
+    public City(String name)
+    {
+        this.name = name;
     }
 }

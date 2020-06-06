@@ -2,8 +2,6 @@ package com.scaleup.notesharing.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,8 +15,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "notes")
-@Builder
-@AllArgsConstructor
 @Getter
 @Setter
 public class Note extends Auditable{
@@ -28,7 +24,7 @@ public class Note extends Auditable{
 
     private String description;
 
-    @NotBlank
+    @NotNull
     private Integer price;
 
     @ManyToOne
@@ -44,5 +40,62 @@ public class Note extends Auditable{
 
     public Note(){
 
+    }
+
+    public static final class Builder {
+        private @NotBlank String name;
+        private String description;
+        private @NotNull Integer price;
+        private @NotNull Student student;
+        private Subject subject;
+        private String imageUrl;
+
+        public Builder() {
+        }
+
+        public static Builder aNote() {
+            return new Builder();
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder description(String desc){
+            this.description = desc;
+            return this;
+        }
+
+        public Builder price(Integer price) {
+            this.price = price;
+            return this;
+        }
+
+        public Builder student(Student student) {
+            this.student = student;
+            return this;
+        }
+
+        public Builder subject(Subject subject) {
+            this.subject = subject;
+            return this;
+        }
+
+        public Builder imageUrl(String imageUrl) {
+            this.imageUrl = imageUrl;
+            return this;
+        }
+
+        public Note build() {
+            Note note = new Note();
+            note.student = this.student;
+            note.imageUrl = this.imageUrl;
+            note.name = this.name;
+            note.description = this.description;
+            note.subject = this.subject;
+            note.price = this.price;
+            return note;
+        }
     }
 }

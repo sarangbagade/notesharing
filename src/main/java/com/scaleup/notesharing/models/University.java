@@ -1,8 +1,6 @@
 package com.scaleup.notesharing.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,10 +13,8 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "universities")
-@Builder
-@AllArgsConstructor
-@Getter
 @Setter
+@Getter
 public class University extends Auditable{
 
     @NotBlank
@@ -33,5 +29,34 @@ public class University extends Auditable{
     public University()
     {
 
+    }
+
+    public static final class Builder {
+        private String name;
+        private City officeIn;
+
+        public Builder() {
+        }
+
+        public static Builder anUniversity() {
+            return new Builder();
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder officeIn(City officeIn) {
+            this.officeIn = officeIn;
+            return this;
+        }
+
+        public University build() {
+            University university = new University();
+            university.officeIn = this.officeIn;
+            university.name = this.name;
+            return university;
+        }
     }
 }

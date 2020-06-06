@@ -1,18 +1,20 @@
-package com.scaleup.notesharing;
+package com.scaleup.notesharing.controller;
 
 import com.scaleup.notesharing.models.*;
 import com.scaleup.notesharing.repositores.*;
 import jdk.jshell.Snippet;
+import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.sql.rowset.BaseRowSet;
 import java.util.List;
 
 @RestController
 @RequestMapping("/dev_test")
-public class Controller1 {
+public class Controller2 {
 
     @Autowired
     private NoteRepository noteRepository;
@@ -41,24 +43,50 @@ public class Controller1 {
         universityRepository.deleteAll();
         cityRepository.deleteAll();
 
-        City city1 = City.builder().name("Chennai").build();
+        City city1 = new City("Bangalore");
         cityRepository.save(city1);
 
-        University university1 = University.builder().name("pune").officeIn(city1).build();
+        University university1 = new University.Builder()
+                .name("pune")
+                .officeIn(city1)
+                .build();
         universityRepository.save(university1);
 
-        College c1 = College.builder().name("IITM").city(city1).university(university1).build();
+        College c1 = new College.Builder()
+                .name("IITM")
+                .city(city1)
+                .university(university1)
+                .build();
         collegeRepository.save(c1);
 
-        Student student1 = Student.builder().name("sarang").branch(Branch.COMPUTER).college(c1).build();
+        Student student1 = new Student.Builder()
+                .name("sarang")
+                .branch(Branch.COMPUTER)
+                .college(c1)
+                .email("bagadesarang@gmail.com")
+                .saltedHashedPassword("abcd")
+                .build();
         studentRepository.save(student1);
 
-        Note note1 = Note.builder().name("note1").description("first note").price(100).student(student1).build();
+        Note note1 = new Note.Builder()
+                .name("note1")
+                .description("first note")
+                .price(100)
+                .student(student1)
+                .build();
         noteRepository.save(note1);
-        Note note2 = Note.builder().name("note2").description("second note").price(200).student(student1).build();
+        Note note2 = new Note.Builder()
+                .name("note2")
+                .description("second note")
+                .price(200)
+                .student(student1)
+                .build();
         noteRepository.save(note2);
 
-        Subject subject1 = Subject.builder().name("spring").build();
+        Subject subject1 = new Subject.Builder()
+                .name("spring")
+                .branch(Branch.COMPUTER)
+                .build();
         subjectRepository.save(subject1);
 
         return "DB populated";
@@ -67,7 +95,12 @@ public class Controller1 {
     @GetMapping("/getAllNotes")
     public List<Note> getAllNotes()
     {
-        return noteRepository.findAll();
+        List<Note> notes = noteRepository.findAll();
+        for (Note note:notes)
+        {
+            System.out.println(note.getName());
+        }
+        return notes;
     }
     @GetMapping("/getAllStudents")
     public List<Student> getAllStudents()

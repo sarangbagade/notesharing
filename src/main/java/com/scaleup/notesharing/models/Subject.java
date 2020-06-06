@@ -1,6 +1,7 @@
 package com.scaleup.notesharing.models;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -8,9 +9,6 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "subjects")
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 public class Subject extends Auditable{
@@ -20,11 +18,40 @@ public class Subject extends Auditable{
     private String name;
 
     @Enumerated(EnumType.STRING)
-    //@NotBlank
+    @NotNull
     private Branch branch;
 
-//    public Subject()
-//    {
-//
-//    }
+    public Subject()
+    {
+
+    }
+
+    public static final class Builder {
+        private String name;
+        private Branch branch;
+
+        public Builder() {
+        }
+
+        public static Builder aSubject() {
+            return new Builder();
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder branch(Branch branch) {
+            this.branch = branch;
+            return this;
+        }
+
+        public Subject build() {
+            Subject subject = new Subject();
+            subject.branch = this.branch;
+            subject.name = this.name;
+            return subject;
+        }
+    }
 }
