@@ -22,9 +22,11 @@ public abstract class User extends Auditable{
     private String email;
 
     @NotBlank
-    @Getter
     private String saltedHashedPassword;
 
+    public String getSaltedHashedPassword(){
+        return this.saltedHashedPassword;
+    }
     public void setSaltedHashedPassword(String value)
     {
         this.saltedHashedPassword = new BCryptPasswordEncoder(5).encode(value);
@@ -36,7 +38,7 @@ public abstract class User extends Auditable{
     @Setter
     private Set<Role> roles;
 
-    User()
+    public User()
     {
 
     }
