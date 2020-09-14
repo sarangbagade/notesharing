@@ -17,8 +17,8 @@ public class Subject extends Auditable{
     @NotBlank
     private String name;
 
-    @Enumerated(EnumType.STRING)
     @NotNull
+    @ManyToOne
     private Branch branch;
 
     public Subject()

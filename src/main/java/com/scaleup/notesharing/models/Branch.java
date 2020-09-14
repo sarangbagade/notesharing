@@ -1,11 +1,25 @@
 package com.scaleup.notesharing.models;
 
-public enum Branch {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
-    COMPUTER,
-    ELECTRICAL,
-    ELECTRONICS,
-    MECHANICAL,
-    CIVIL,
-    BSC, MSC, MCOM
+@Entity
+@Table(name = "branches")
+public class Branch extends Auditable{
+
+    @Column(unique = true)
+    @NotBlank
+    private String name;
+
+    public Branch()
+    {
+
+    }
+
+    public Branch(String name)
+    {
+        this.name = name;
+    }
 }

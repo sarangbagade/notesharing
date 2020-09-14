@@ -30,7 +30,8 @@ public class Controller2 {
     private SubjectRepository subjectRepository;
     @Autowired
     private UniversityRepository universityRepository;
-
+    @Autowired
+    private BranchRepository branchRepository;
 
     @GetMapping("/populateDB")
     public String populateDB()
@@ -39,6 +40,7 @@ public class Controller2 {
         studentRepository.deleteAll();
         noteRepository.deleteAll();
         subjectRepository.deleteAll();
+        branchRepository.deleteAll();
         collegeRepository.deleteAll();
         universityRepository.deleteAll();
         cityRepository.deleteAll();
@@ -59,9 +61,12 @@ public class Controller2 {
                 .build();
         collegeRepository.save(c1);
 
+        Branch br = new Branch("computer");
+        branchRepository.save(br);
+
         Student student1 = new Student.Builder()
                 .name("sarang")
-                .branch(Branch.COMPUTER)
+                .branch(br)
                 .college(c1)
                 .email("bagadesarang@gmail.com")
                 .saltedHashedPassword("abcd")
@@ -85,7 +90,7 @@ public class Controller2 {
 
         Subject subject1 = new Subject.Builder()
                 .name("spring")
-                .branch(Branch.COMPUTER)
+                .branch(br)
                 .build();
         subjectRepository.save(subject1);
 

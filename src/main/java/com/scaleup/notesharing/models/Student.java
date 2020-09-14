@@ -20,6 +20,8 @@ public class Student extends User{
     @NotBlank
     private String name;
 
+    @ManyToOne
+    @JsonIdentityReference
     private Branch branch;
 
     @URL
