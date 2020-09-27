@@ -23,8 +23,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         Optional<User> user = userRepository.findByEmail(email);
-        if(user.isEmpty())
-            throw new NoSuchUserException("No such user with email " + email);
+        try{
+            if(user.isEmpty())
+                throw new NoSuchUserException("No such user with email " + email);
+        }catch(NoSuchUserException e){
+            System.out.println(e.getStackTrace());
+        }
+
         return new CustomUserDetails(user.get());
     }
 }

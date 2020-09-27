@@ -5,9 +5,7 @@ import com.scaleup.notesharing.repositores.*;
 import jdk.jshell.Snippet;
 import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.sql.rowset.BaseRowSet;
 import java.util.List;
@@ -137,5 +135,13 @@ public class Controller2 {
     public String hello()
     {
         return "hello world";
+    }
+
+//    @RequestMapping(value = "/postRequest", method = RequestMethod.POST)
+    @RequestMapping(value = "/check", method = RequestMethod.GET)
+    public String check(@RequestParam Integer id, @RequestParam String[] name)
+    {
+        System.out.println(name[1]);
+        return Integer.toString(id);
     }
 }

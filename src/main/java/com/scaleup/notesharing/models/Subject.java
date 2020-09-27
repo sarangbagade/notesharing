@@ -1,11 +1,14 @@
 package com.scaleup.notesharing.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "subjects")
@@ -20,6 +23,10 @@ public class Subject extends Auditable{
     @NotNull
     @ManyToOne
     private Branch branch;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subject")
+    @JsonIdentityReference
+    private Set<Book> books = new HashSet<>();
 
     public Subject()
     {

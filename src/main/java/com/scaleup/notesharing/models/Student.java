@@ -44,7 +44,7 @@ public class Student extends User{
 
     private Student(Builder builder)
     {
-        setName(builder.name);
+        this.setName(builder.name);
         setBranch(builder.branch);
         setProfilePicUrl(builder.profilePicUrl);
         setCollege(builder.college);
