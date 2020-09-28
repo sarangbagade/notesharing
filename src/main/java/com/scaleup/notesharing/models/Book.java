@@ -1,24 +1,25 @@
 package com.scaleup.notesharing.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "books")
 @Getter
 @Setter
-public class Book extends Auditable{
-
-    private String name;
-
-    private String author;
-
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "subject_id")
-    @JsonBackReference
-    private Subject subject;
+@NoArgsConstructor
+public class Book {
+	@GeneratedValue
+	private long id;
+	private String name;
+	private String author;
+	@ManyToOne
+	private Subject subject;
 }
