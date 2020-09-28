@@ -11,5 +11,5 @@ import java.util.List;
 public interface BookRepository extends JpaRepository<Book, Long> {
 
     public List<Book> findBySubjectId(Long subject);
-    public Book deleteByName(String name);
+    public Book deleteById(long id);
 }
