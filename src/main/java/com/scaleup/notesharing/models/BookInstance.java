@@ -1,13 +1,19 @@
 package com.scaleup.notesharing.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "bookInstances")
-public class BookInstance extends Auditable{
+public class BookInstance{
 
+	@Id
+	@GeneratedValue
+	private long id;
+	
     @ManyToOne
     private Student student;
 
