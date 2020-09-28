@@ -2,24 +2,26 @@ package com.scaleup.notesharing.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "branches")
-public class Branch extends Auditable{
+@NoArgsConstructor
+public class Branch {
 
-    @Column(unique = true)
-    @NotBlank
-    private String name;
+	@Id
+	@GeneratedValue
+	private long id;
+	@Column(unique = true)
+	@NotBlank
+	private String name;
 
-    public Branch()
-    {
-
-    }
-
-    public Branch(String name)
-    {
-        this.name = name;
-    }
+	public Branch(String name) {
+		this.name = name;
+	}
 }

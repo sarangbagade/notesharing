@@ -2,6 +2,7 @@ package com.scaleup.notesharing.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -16,6 +17,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Book {
+	
+	@Id
 	@GeneratedValue
 	private long id;
 	private String name;

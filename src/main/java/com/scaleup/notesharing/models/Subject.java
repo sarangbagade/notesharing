@@ -14,6 +14,10 @@ import javax.validation.constraints.NotNull;
 @Setter
 @NoArgsConstructor
 public class Subject {
+	
+	@Id
+	@GeneratedValue
+	private long id;
 
 	@Column(unique = true)
 	@NotBlank
