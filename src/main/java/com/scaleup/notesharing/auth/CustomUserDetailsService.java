@@ -24,7 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         Optional<User> user = userRepository.findByEmail(email);
         try{
-            if(user.isEmpty())
+            if(!user.isPresent())
                 throw new NoSuchUserException("No such user with email " + email);
         }catch(NoSuchUserException e){
             System.out.println(e.getStackTrace());

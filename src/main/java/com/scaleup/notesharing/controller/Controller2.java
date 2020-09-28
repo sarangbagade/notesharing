@@ -1,11 +1,25 @@
 package com.scaleup.notesharing.controller;
 
-import com.scaleup.notesharing.models.*;
-import com.scaleup.notesharing.repositores.*;
-import jdk.jshell.Snippet;
 import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import com.scaleup.notesharing.models.Branch;
+import com.scaleup.notesharing.models.City;
+import com.scaleup.notesharing.models.College;
+import com.scaleup.notesharing.models.Note;
+import com.scaleup.notesharing.models.Role;
+import com.scaleup.notesharing.models.Student;
+import com.scaleup.notesharing.models.Subject;
+import com.scaleup.notesharing.models.University;
+import com.scaleup.notesharing.repositores.BranchRepository;
+import com.scaleup.notesharing.repositores.CityRepository;
+import com.scaleup.notesharing.repositores.CollegeRepository;
+import com.scaleup.notesharing.repositores.NoteRepository;
+import com.scaleup.notesharing.repositores.RoleRepository;
+import com.scaleup.notesharing.repositores.StudentRepository;
+import com.scaleup.notesharing.repositores.SubjectRepository;
+import com.scaleup.notesharing.repositores.UniversityRepository;
 
 import javax.sql.rowset.BaseRowSet;
 import java.util.List;
