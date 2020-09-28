@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api_check")
+@RequestMapping(value = "/api/v1")
 public class BookController {
 
     @Autowired
